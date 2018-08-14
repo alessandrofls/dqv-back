@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Diaria {
@@ -18,6 +20,11 @@ public class Diaria {
 	private Integer tempoConsulta;
 	private Boolean validado;
 	private Boolean aprovado;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_especialista")
+	private Especialista especialista;
+	
 	
 	public Diaria(Timestamp diaria, int qtdeTotalConsulta, int tempoConsulta) {
 		this.diaria = diaria;
