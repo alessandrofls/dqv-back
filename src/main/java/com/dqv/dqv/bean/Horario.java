@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Horario {
@@ -17,6 +18,9 @@ public class Horario {
 	private LocalTime horaInico;
 	private LocalTime horaFim;
 	private Boolean disponivel;
+	
+	@OneToOne(mappedBy = "horario")
+	private Consulta consulta;
 	
 	public Horario(LocalTime horaInico, LocalTime horaFim, boolean disponivel) {
 		this.horaInico = horaInico;

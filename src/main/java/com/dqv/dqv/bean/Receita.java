@@ -3,9 +3,12 @@ package com.dqv.dqv.bean;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Receita {
@@ -13,7 +16,10 @@ public class Receita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_idConsulta")
 	private Consulta consulta;
+	private Timestamp dataEmissao;
 	private Timestamp validade;
 	private String posologia;
 	private String descrição;
@@ -85,9 +91,15 @@ public class Receita {
 	public void setPrincipioAtivo(String principioAtivo) {
 		this.principioAtivo = principioAtivo;
 	}
-	
-	
-	
+
+	public Timestamp getDataEmissao() {
+		return dataEmissao;
+	}
+
+	public void setDataEmissao(Timestamp dataEmissao) {
+		this.dataEmissao = dataEmissao;
+	}
+		
 	
 	
 	

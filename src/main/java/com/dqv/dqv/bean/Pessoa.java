@@ -1,16 +1,22 @@
 package com.dqv.dqv.bean;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Pessoa {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +28,23 @@ public class Pessoa {
 	private Sexo sexo;
 	private EstadoCivil estadoCivil;
 	private Timestamp dataNascimento;
+	private Timestamp dataIncio;
+	private Timestamp dataFim;
+	private Boolean coordenador;
+	
+	@OneToOne(mappedBy = "paciente")
+	private AgendamentoConsulta agendamentoConsulta;
+	
+	
+	@OneToOne
+	@JoinColumn(name = "fk_id")
 	private Endereco endereco;
 	
+	@OneToMany(mappedBy = "coordenador")
+	private List<Especialista> especialistas = new ArrayList<Especialista>();
+	
+	
+ 	
 	public Pessoa() {
 		
 	}
@@ -40,59 +61,131 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 	}
+	
+	/*
+	 * 	GETTERS AND SETTERS
+	 */
 
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 
 	public String getNome() {
 		return nome;
 	}
+
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
 	public String getRg() {
 		return rg;
 	}
+
+
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
+
+
 	public String getCpf() {
 		return cpf;
 	}
+
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
+
 	public String getTelefone() {
 		return telefone;
 	}
+
+
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	@Enumerated(EnumType.STRING)
+
+
 	public Sexo getSexo() {
 		return sexo;
 	}
+
+
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
-	
-	@Enumerated(EnumType.STRING)
+
+
 	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
+
+
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
+
+
 	public Timestamp getDataNascimento() {
 		return dataNascimento;
 	}
+
+
 	public void setDataNascimento(Timestamp dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getId() {
-		return id;
+
+	public Timestamp getDataIncio() {
+		return dataIncio;
 	}
+
+
+	public void setDataIncio(Timestamp dataIncio) {
+		this.dataIncio = dataIncio;
+	}
+
+
+	public Timestamp getDataFim() {
+		return dataFim;
+	}
+
+
+	public void setDataFim(Timestamp dataFim) {
+		this.dataFim = dataFim;
+	}
+
+
+	public Boolean getCoordenador() {
+		return coordenador;
+	}
+
+
+	public void setCoordenador(Boolean coordenador) {
+		this.coordenador = coordenador;
+	}
+
+
+	public AgendamentoConsulta getAgendamentoConsulta() {
+		return agendamentoConsulta;
+	}
+
+
+	public void setAgendamentoConsulta(AgendamentoConsulta agendamentoConsulta) {
+		this.agendamentoConsulta = agendamentoConsulta;
+	}
+
 
 	public Endereco getEndereco() {
 		return endereco;
@@ -102,6 +195,19 @@ public class Pessoa {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+
+	public List<Especialista> getEspecialistas() {
+		return especialistas;
+	}
+
+
+	public void setEspecialistas(List<Especialista> especialistas) {
+		this.especialistas = especialistas;
+	}
+
+
+	
 	
 	
 	

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco {
@@ -17,6 +18,9 @@ public class Endereco {
 	private String cidade;
 	private String uf;
 	
+	@OneToOne(mappedBy = "endereco")
+	private Pessoa pessoa;
+	
 	
 	public Endereco(String cep, String logradouro, Integer numero, String cidade, String uf) {
 		this.cep = cep;
@@ -24,6 +28,10 @@ public class Endereco {
 		this.numero = numero;
 		this.cidade = cidade;
 		this.uf = uf;
+	}
+	
+	public Endereco() {
+		
 	}
 
 

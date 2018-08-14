@@ -1,28 +1,35 @@
 package com.dqv.dqv.bean;
 
+
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Id;
+
 
 @Entity
 public class Medico extends Especialista{
-	@Id
+
 	private String crm;
 	private TipoMedico tipo;
 	
 	
+	
 	public Medico(String nome, String rg, String cpf, String telefone, Sexo sexo, EstadoCivil estadoCivil,
-			Timestamp dataNascimento, Endereco endereco, int numeroDependentes, Timestamp dataAdmissao,
-			Especialistas especialidade, String crm, TipoMedico tipo, Coordenador coordenador) {
-		super(nome, rg, cpf, telefone, sexo, estadoCivil, dataNascimento, endereco, numeroDependentes, dataAdmissao, especialidade, coordenador);
+			Timestamp dataNascimento, Endereco endereco, int numeroDependentes, Timestamp dataAdmissao, String crm,
+			TipoMedico tipo) {
+		super(nome, rg, cpf, telefone, sexo, estadoCivil, dataNascimento, endereco, numeroDependentes, dataAdmissao);
 		this.crm = crm;
 		this.tipo = tipo;
 	}
 
 
+	/*
+	 * 	GETTERS AND SETTERS
+	 */
+	
+	
 	public String getCrm() {
 		return crm;
 	}
