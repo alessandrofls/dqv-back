@@ -34,15 +34,15 @@ public class ControlPessoa {
 		return this.repoPessoa.findAll();
 	}
 	
-	@PutMapping
-	public Pessoa update(@RequestBody Pessoa pessoa) {
-		return this.update(pessoa);
-	}
+//	@PutMapping
+//	public Pessoa update(@RequestBody Pessoa pessoa) {
+//		return this.repoPessoa.update(pessoa);
+//	}
 	
 	@DeleteMapping(path = "/{id}")
 	public List <Pessoa> deletarPessoa(@PathVariable("id") Integer id){
-		this.repoPessoa.delete(id);
-		
+		this.repoPessoa.deleteById(id);
+		return this.repoPessoa.findAll();
 	}
 	
 

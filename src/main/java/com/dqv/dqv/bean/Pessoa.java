@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pessoa {
+public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +32,8 @@ public abstract class Pessoa {
 	private Timestamp dataFim;
 	private Boolean coordenador;
 	
-	@OneToOne(mappedBy = "paciente")
-	private AgendamentoConsulta agendamentoConsulta;
+	@OneToMany(mappedBy = "paciente")
+	private List<AgendamentoConsulta> agendamentoConsulta = new ArrayList<AgendamentoConsulta>();
 	
 	
 	@OneToOne
@@ -177,12 +177,12 @@ public abstract class Pessoa {
 	}
 
 
-	public AgendamentoConsulta getAgendamentoConsulta() {
+	public List<AgendamentoConsulta> getAgendamentoConsulta() {
 		return agendamentoConsulta;
 	}
 
 
-	public void setAgendamentoConsulta(AgendamentoConsulta agendamentoConsulta) {
+	public void setAgendamentoConsulta(List<AgendamentoConsulta> agendamentoConsulta) {
 		this.agendamentoConsulta = agendamentoConsulta;
 	}
 
