@@ -24,6 +24,36 @@ public class AgendamentoConsulta {
 	@OneToOne
 	@JoinColumn(name = "fk_consulta")
 	private Consulta consulta;
+	public AgendamentoConsulta(Pessoa paciente, Servidor servidor, Consulta consulta) {
+		super();
+		this.paciente = paciente;
+		this.servidor = servidor;
+		this.consulta = consulta;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Pessoa getPaciente() {
+		return paciente;
+	}
+	public void setPaciente(Pessoa paciente) {
+		this.paciente = paciente;
+	}
+	public Servidor getServidor() {
+		return servidor;
+	}
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
+	public Consulta getConsulta() {
+		return consulta;
+	}
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
 	
 	
 
