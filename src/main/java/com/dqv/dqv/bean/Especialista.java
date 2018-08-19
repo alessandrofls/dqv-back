@@ -21,8 +21,8 @@ public class Especialista extends Funcionario{
 	@JoinColumn(name = "fk_coordenador")
 	private Pessoa responsavel;
 
-	@OneToMany(mappedBy = "especialista")
-	private List<Diaria> diarias = new ArrayList<Diaria>(); 	
+//	@OneToMany(mappedBy = "especialista")
+//	private List<Diaria> diarias = new ArrayList<Diaria>(); 	
 	
 	
 	
@@ -44,13 +44,13 @@ public class Especialista extends Funcionario{
 		this.especialidade = especialidade;
 	}
 
-	public List<Diaria> getDiarias() {
-		return diarias;
-	}
-
-	public void setDiarias(List<Diaria> diarias) {
-		this.diarias = diarias;
-	}
+//	public List<Diaria> getDiarias() {
+//		return diarias;
+//	}
+//
+//	public void setDiarias(List<Diaria> diarias) {
+//		this.diarias = diarias;
+//	}
 
 	public Pessoa getResponsavel() {
 		return responsavel;

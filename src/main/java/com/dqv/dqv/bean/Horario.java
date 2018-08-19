@@ -4,9 +4,12 @@ package com.dqv.dqv.bean;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,13 +22,22 @@ public class Horario {
 	private LocalTime horaFim;
 	private Boolean disponivel;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_diaria")
+	private Diaria diaria;
+	
 	@OneToOne(mappedBy = "horario")
 	private Consulta consulta;
 	
-	public Horario(LocalTime horaInico, LocalTime horaFim, boolean disponivel) {
+	public Horario() {
+		
+	}
+	
+	public Horario(LocalTime horaInico, LocalTime horaFim, boolean disponivel, Diaria diaria) {
 		this.horaInico = horaInico;
 		this.horaFim = horaFim;
 		this.disponivel = disponivel;
+		this.diaria = diaria;
 	}
 	
 	public Integer getId() {
@@ -51,6 +63,14 @@ public class Horario {
 	}
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
+	}
+
+	public Diaria getDiaria() {
+		return diaria;
+	}
+
+	public void setDiaria(Diaria diaria) {
+		this.diaria = diaria;
 	}
 	
 	

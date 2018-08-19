@@ -22,12 +22,17 @@ import com.dqv.dqv.repository.RepoPessoa;
 @RequestMapping(path = "/especialista")
 @CrossOrigin
 public class ControlEspecialista {
-	@Autowired RepoEspecialista repoEspecialista;
+	@Autowired private RepoEspecialista repoEspecialista;
 	@Autowired private RepoPessoa repoPessoa;
 	
-	@PostMapping
-	public Especialista save(@RequestBody Especialista especialista) {
-		return this.repoEspecialista.save(especialista);
+	@PostMapping(path = "/{idcoord}")
+	public Especialista save(@RequestBody Especialista especialista, @PathVariable("idcoord") Integer idcoord) {
+		Pessoa coordenador = this.repoPessoa.findById(idcoord).get();
+		if(coordenador.getCoordenador()) {
+			especialista.setResponsavel(coordenador);
+			this.repoEspecialista.save(especialista);
+		}
+		return especialista;
 	}
 	
 	@GetMapping
@@ -54,16 +59,13 @@ public class ControlEspecialista {
 	}
 	
 	@GetMapping(path = "setcoordenador/{id}/{idcoord}")
-	public List<Especialista> setCoordenadorById(@PathVariable("id") Integer id, @PathVariable("idcoord") Integer idcoord){
+	public Especialista setCoordenadorById(@PathVariable("id") Integer id, @PathVariable("idcoord") Integer idcoord){
 		Pessoa coordenador = this.repoPessoa.findById(idcoord).get();
 		Especialista especialista = this.repoEspecialista.findById(id).get();
-		
 		if(coordenador.getCoordenador()) {
 			especialista.setResponsavel(coordenador);
-			coordenador.addEspecialista(especialista);
 			this.repoEspecialista.save(especialista);
-			this.repoPessoa.save(coordenador);
 		}
-		return coordenador.getEspecialistas();
+		return especialista;
 	}
 }

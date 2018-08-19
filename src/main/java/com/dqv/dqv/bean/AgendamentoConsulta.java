@@ -1,6 +1,8 @@
 package com.dqv.dqv.bean;
 
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ public class AgendamentoConsulta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Timestamp horaMarcado;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_paciente")
 	private Pessoa paciente;
@@ -24,11 +27,15 @@ public class AgendamentoConsulta {
 	@OneToOne
 	@JoinColumn(name = "fk_consulta")
 	private Consulta consulta;
+	public AgendamentoConsulta() {
+		this.setHoraMarcado(new Timestamp(System.currentTimeMillis()));
+	}
 	public AgendamentoConsulta(Pessoa paciente, Servidor servidor, Consulta consulta) {
 		super();
 		this.paciente = paciente;
 		this.servidor = servidor;
 		this.consulta = consulta;
+		this.setHoraMarcado(new Timestamp(System.currentTimeMillis()));
 	}
 	public Integer getId() {
 		return id;
@@ -53,6 +60,12 @@ public class AgendamentoConsulta {
 	}
 	public void setConsulta(Consulta consulta) {
 		this.consulta = consulta;
+	}
+	public Timestamp getHoraMarcado() {
+		return horaMarcado;
+	}
+	public void setHoraMarcado(Timestamp horaMarcado) {
+		this.horaMarcado = horaMarcado;
 	}
 	
 	

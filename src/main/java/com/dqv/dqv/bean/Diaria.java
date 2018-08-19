@@ -16,7 +16,6 @@ public class Diaria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Timestamp diaria;
-	private Integer qtdeTotalConsulta;
 	private Integer tempoConsulta;
 	private Boolean validado;
 	private Boolean aprovado;
@@ -25,10 +24,12 @@ public class Diaria {
 	@JoinColumn(name = "fk_especialista")
 	private Especialista especialista;
 	
+	public Diaria() {
+		
+	}
 	
 	public Diaria(Timestamp diaria, int qtdeTotalConsulta, int tempoConsulta) {
 		this.diaria = diaria;
-		this.qtdeTotalConsulta = qtdeTotalConsulta;
 		this.tempoConsulta = tempoConsulta;
 		this.validado = false;
 		this.aprovado = false;
@@ -53,17 +54,6 @@ public class Diaria {
 	public void setDiaria(Timestamp diaria) {
 		this.diaria = diaria;
 	}
-
-
-	public int getQtdeTotalConsulta() {
-		return qtdeTotalConsulta;
-	}
-
-
-	public void setQtdeTotalConsulta(int qtdeTotalConsulta) {
-		this.qtdeTotalConsulta = qtdeTotalConsulta;
-	}
-
 
 	public int getTempoConsulta() {
 		return tempoConsulta;
@@ -92,6 +82,16 @@ public class Diaria {
 
 	public void setAprovado(boolean aprovado) {
 		this.aprovado = aprovado;
+	}
+
+
+	public Especialista getEspecialista() {
+		return especialista;
+	}
+
+
+	public void setEspecialista(Especialista especialista) {
+		this.especialista = especialista;
 	}
 	
 	

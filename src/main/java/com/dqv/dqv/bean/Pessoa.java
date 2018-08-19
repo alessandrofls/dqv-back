@@ -42,8 +42,8 @@ public class Pessoa {
 	@JoinColumn(name = "fk_id")
 	private Endereco endereco;
 	
-	@OneToMany(mappedBy = "coordenador")
-	private List<Especialista> especialistas = new ArrayList<Especialista>();
+//	@OneToMany(mappedBy = "responsavel")
+//	private List<Especialista> especialistas = new ArrayList<Especialista>();
 	
 	
  	
@@ -199,14 +199,14 @@ public class Pessoa {
 	}
 
 
-	public List<Especialista> getEspecialistas() {
-		return especialistas;
-	}
-
-
-	public void setEspecialistas(List<Especialista> especialistas) {
-		this.especialistas = especialistas;
-	}
+//	public List<Especialista> getEspecialistas() {
+//		return especialistas;
+//	}
+//
+//
+//	public void setEspecialistas(List<Especialista> especialistas) {
+//		this.especialistas = especialistas;
+//	}
 
 
 	public String getEmail() {
@@ -228,10 +228,10 @@ public class Pessoa {
 		this.pass = pass;
 	}
 	
-	public void addEspecialista(Especialista especialista) {
-		this.especialistas.add(especialista);
-		System.out.println(especialista.getNome());
-	}
+//	public void addEspecialista(Especialista especialista) {
+//		this.especialistas.add(especialista);
+//		System.out.println(especialista.getNome());
+//	}
 
 
 	

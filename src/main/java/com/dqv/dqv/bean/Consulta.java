@@ -17,7 +17,6 @@ public class Consulta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Timestamp horaMarcado;
 	private Boolean viaTelefone;
 	private Boolean cancelada;
 	private Boolean status;
@@ -38,7 +37,6 @@ public class Consulta {
 	public Consulta( Timestamp horaMarcado, Boolean viaTelefone, Boolean cancelada, Boolean status,
 			String observacao, String avaliacao, String procedimentoRealizado, Horario horario, List<Receita> receitas,
 			AgendamentoConsulta agendamentoConsulta) {
-		this.horaMarcado = horaMarcado;
 		this.viaTelefone = viaTelefone;
 		this.cancelada = cancelada;
 		this.status = status;
@@ -58,14 +56,7 @@ public class Consulta {
 		this.id = id;
 	}
 
-	public Timestamp getHoraMarcado() {
-		return horaMarcado;
-	}
-
-	public void setHoraMarcado(Timestamp horaMarcado) {
-		this.horaMarcado = horaMarcado;
-	}
-
+	
 	public Boolean getViaTelefone() {
 		return viaTelefone;
 	}

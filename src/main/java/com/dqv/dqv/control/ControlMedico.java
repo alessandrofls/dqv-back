@@ -13,18 +13,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dqv.dqv.bean.Especialista;
 import com.dqv.dqv.bean.Medico;
+import com.dqv.dqv.bean.Pessoa;
 import com.dqv.dqv.repository.RepoMedico;
+import com.dqv.dqv.repository.RepoPessoa;
 
 @RestController
 @RequestMapping(path = "/medico")
 @CrossOrigin
 public class ControlMedico {
-@Autowired RepoMedico repoMedico;
-	
-	@PostMapping
-	public Medico save(@RequestBody Medico medico) {
-		return this.repoMedico.save(medico);
+	@Autowired RepoMedico repoMedico;
+	@Autowired private RepoPessoa repoPessoa;	
+
+	@PostMapping(path = "/{idcoord}")
+	public Medico save(@RequestBody Medico medico, @PathVariable("idcoord") Integer idcoord) {
+		Pessoa coordenador = this.repoPessoa.findById(idcoord).get();
+		if(coordenador.getCoordenador()) {
+			medico.setResponsavel(coordenador);
+			this.repoMedico.save(medico);
+		}
+		return medico;
 	}
 	
 	@GetMapping
