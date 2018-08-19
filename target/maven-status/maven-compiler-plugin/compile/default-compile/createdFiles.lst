@@ -12,7 +12,6 @@ com\dqv\dqv\bean\Situacao.class
 com\dqv\dqv\repository\RepoEndereco.class
 com\dqv\dqv\control\ControlPaciente.class
 com\dqv\dqv\bean\EstadoCivil.class
-com\dqv\dqv\repository\BaseRepoPessoa.class
 com\dqv\dqv\bean\Especialistas.class
 com\dqv\dqv\control\ControlEndereco.class
 com\dqv\dqv\bean\Horario.class

@@ -21,6 +21,8 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private	Integer id;
+	private String email;
+	private String pass;
 	private String nome;
 	private String rg;
 	private String cpf;
@@ -33,7 +35,7 @@ public class Pessoa {
 	private Boolean coordenador;
 	
 	@OneToMany(mappedBy = "paciente")
-	private List<AgendamentoConsulta> agendamentoConsulta = new ArrayList<AgendamentoConsulta>();
+	private List<AgendamentoConsulta> agendamentoConsultaPaciente = new ArrayList<AgendamentoConsulta>();
 	
 	
 	@OneToOne
@@ -177,13 +179,13 @@ public class Pessoa {
 	}
 
 
-	public List<AgendamentoConsulta> getAgendamentoConsulta() {
-		return agendamentoConsulta;
+	public List<AgendamentoConsulta> getAgendamentoConsultaPaciente() {
+		return agendamentoConsultaPaciente;
 	}
 
 
-	public void setAgendamentoConsulta(List<AgendamentoConsulta> agendamentoConsulta) {
-		this.agendamentoConsulta = agendamentoConsulta;
+	public void setAgendamentoConsultaPaciente(List<AgendamentoConsulta> agendamentoConsultaPaciente) {
+		this.agendamentoConsultaPaciente = agendamentoConsultaPaciente;
 	}
 
 
@@ -204,6 +206,31 @@ public class Pessoa {
 
 	public void setEspecialistas(List<Especialista> especialistas) {
 		this.especialistas = especialistas;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPass() {
+		return pass;
+	}
+
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	
+	public void addEspecialista(Especialista especialista) {
+		this.especialistas.add(especialista);
+		System.out.println(especialista.getNome());
 	}
 
 

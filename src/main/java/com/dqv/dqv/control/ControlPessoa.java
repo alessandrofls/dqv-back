@@ -3,7 +3,6 @@ package com.dqv.dqv.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,10 +33,12 @@ public class ControlPessoa {
 		return this.repoPessoa.findAll();
 	}
 	
-//	@PutMapping
-//	public Pessoa update(@RequestBody Pessoa pessoa) {
-//		return this.repoPessoa.update(pessoa);
-//	}
+	@PutMapping
+	public Pessoa update(@RequestBody Pessoa pessoa) {
+		this.repoPessoa.save(pessoa);
+		return this.repoPessoa.findById(pessoa.getId()).get();
+		
+	}
 	
 	@DeleteMapping(path = "/{id}")
 	public List <Pessoa> deletarPessoa(@PathVariable("id") Integer id){
@@ -45,5 +46,9 @@ public class ControlPessoa {
 		return this.repoPessoa.findAll();
 	}
 	
+	@GetMapping(path = "/{id}")
+	public Pessoa getPessoaById(@PathVariable("id") Integer id){
+		return this.repoPessoa.findById(id).get();
+	}
 
 }

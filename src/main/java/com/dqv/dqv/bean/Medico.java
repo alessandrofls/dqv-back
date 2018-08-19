@@ -23,7 +23,13 @@ public class Medico extends Especialista{
 		this.crm = crm;
 		this.tipo = tipo;
 	}
-
+	
+	public Medico() {
+		super();
+		this.setEspecialidade(Especialistas.MEDICO);
+	}
+	
+	
 
 	/*
 	 * 	GETTERS AND SETTERS

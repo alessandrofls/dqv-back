@@ -17,9 +17,9 @@ public class Especialista extends Funcionario{
 
 	private Especialistas especialidade;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_coordenador")
-	private Pessoa coordenador;
+	private Pessoa responsavel;
 
 	@OneToMany(mappedBy = "especialista")
 	private List<Diaria> diarias = new ArrayList<Diaria>(); 	
@@ -28,7 +28,11 @@ public class Especialista extends Funcionario{
 	
 	public Especialista(String nome, String rg, String cpf, String telefone, Sexo sexo, EstadoCivil estadoCivil,
 			Timestamp dataNascimento, Endereco endereco, int numeroDependentes, Timestamp dataAdmissao) {
-		super(nome, rg, cpf, telefone, sexo, estadoCivil, dataNascimento, endereco, numeroDependentes, dataAdmissao);
+		super(nome, rg, cpf, telefone, sexo, estadoCivil, dataNascimento, endereco, dataAdmissao);
+	}
+	
+	public Especialista() {
+		super();
 	}
 
 	@Enumerated(EnumType.STRING)
@@ -46,6 +50,14 @@ public class Especialista extends Funcionario{
 
 	public void setDiarias(List<Diaria> diarias) {
 		this.diarias = diarias;
+	}
+
+	public Pessoa getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Pessoa responsavel) {
+		this.responsavel = responsavel;
 	}
 
 

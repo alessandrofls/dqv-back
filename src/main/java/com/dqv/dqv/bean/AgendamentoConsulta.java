@@ -18,7 +18,7 @@ public class AgendamentoConsulta {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_paciente")
 	private Pessoa paciente;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "fk_servidor")
 	private Servidor servidor;
 	@OneToOne

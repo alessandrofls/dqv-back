@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: dqv
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Alessandro
+Built-By: Caio
 Implementation-Vendor-Id: com.dqv
-Build-Jdk: 1.8.0_171
+Build-Jdk: 1.8.0_181
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/dqv
 Created-By: Maven Integration for Eclipse

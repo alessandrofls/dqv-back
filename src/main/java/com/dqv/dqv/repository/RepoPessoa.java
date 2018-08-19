@@ -6,6 +6,5 @@ import com.dqv.dqv.bean.Pessoa;
 
 public interface RepoPessoa extends JpaRepository<Pessoa, Integer>{
 	
-	public Pessoa buscarId(Integer id);
 
 }

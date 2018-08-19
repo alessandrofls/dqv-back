@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dqv.dqv.DqvApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.647 s - in com.dqv.dqv.DqvApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.462 s - in com.dqv.dqv.DqvApplicationTests

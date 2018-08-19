@@ -7,19 +7,18 @@ import javax.persistence.Entity;
 @Entity
 public class Funcionario extends Pessoa {
 
-	private Integer numeroDependentes;
 	private Timestamp dataAdmissao;
 		
 	public Funcionario(String nome, String rg, String cpf, String telefone, Sexo sexo,
-			EstadoCivil estadoCivil, Timestamp dataNascimento, Endereco endereco, int numeroDependentes, Timestamp dataAdmissao) {
+			EstadoCivil estadoCivil, Timestamp dataNascimento, Endereco endereco, Timestamp dataAdmissao) {
 		super(nome, rg, cpf, telefone, sexo, estadoCivil, dataNascimento, endereco);
-		this.numeroDependentes = 0;
 		this.dataAdmissao = dataAdmissao;
 	}
 	
-	public int getNumeroDependentes() {
-		return numeroDependentes;
+	public Funcionario() {
+		super();
 	}
+	
 	
 	public Timestamp getDataAdmissao() {
 		return dataAdmissao;
