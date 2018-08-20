@@ -13,36 +13,58 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dqv.dqv.bean.AgendamentoConsulta;
 import com.dqv.dqv.bean.Consulta;
+import com.dqv.dqv.bean.Especialista;
+import com.dqv.dqv.bean.Horario;
 import com.dqv.dqv.bean.Pessoa;
+import com.dqv.dqv.bean.Servidor;
+import com.dqv.dqv.repository.RepoAgendamentoCons;
 import com.dqv.dqv.repository.RepoConsulta;
+import com.dqv.dqv.repository.RepoEspecialista;
+import com.dqv.dqv.repository.RepoHorario;
 import com.dqv.dqv.repository.RepoPessoa;
+import com.dqv.dqv.repository.RepoServidor;
 
 @RestController
-@RequestMapping(path = "/consultas")
+@RequestMapping(path = "/consulta")
 @CrossOrigin
 public class ControlConsulta {
 	
-	@Autowired private RepoConsulta repoConsulta;
+	@Autowired private RepoAgendamentoCons repoAgendamentoCons;
 	@Autowired private RepoPessoa repoPessoa;
+	@Autowired private RepoConsulta repoConsulta;
+	@Autowired private RepoEspecialista repoEspecialista;
 	
-	@GetMapping(path = "pessoa/{id}")
-	public List<Consulta> listarConsultas(@PathVariable("id") Integer id){
-		ArrayList<Consulta> consultas = new ArrayList<>(); 
-		Optional<Pessoa> p = repoPessoa.findById(id);
-		for(int i=0;i<p.get().getAgendamentoConsultaPaciente().size();i++) {
-			 consultas.add(p.get().getAgendamentoConsultaPaciente().get(i).getConsulta());  
+	@GetMapping(path = "/pessoa/{id}")
+	public List<Consulta> listarConsultasPessoa(@PathVariable("id") Integer id){
+		Pessoa p = repoPessoa.findById(id).get();
+		List<AgendamentoConsulta> agendamentos = this.repoAgendamentoCons.findAll();
+		List<Consulta> consultasPessoa = new ArrayList<Consulta>();
+		for(int i=0;i<agendamentos.size();i++) {
+			if(agendamentos.get(i).getPaciente().getId()==p.getId()) {
+				consultasPessoa.add(agendamentos.get(i).getConsulta());
+			}
 		}
-		return consultas;
+		return consultasPessoa;
 	}
 	
-	@PostMapping
-	public Consulta addConsulta(@RequestBody Consulta consulta) {
-		return this.repoConsulta.save(consulta);
+	@GetMapping(path = "/especialista/{id}")
+	public List<Consulta> listarConsultasEspecialista(@PathVariable("id") Integer id){
+		Especialista e = repoEspecialista.findById(id).get();
+		List<AgendamentoConsulta> agendamentos = this.repoAgendamentoCons.findAll();
+		List<Consulta> consultasEspecialista = new ArrayList<Consulta>();
+		for(int i=0;i<agendamentos.size();i++) {
+			if(agendamentos.get(i).getConsulta().getEspecialista().getId()==e.getId()) {
+				consultasEspecialista.add(agendamentos.get(i).getConsulta());
+			}
+		}
+		return consultasEspecialista;
 	}
 	
 	@GetMapping(path = "/{id}")
-	public Consulta getConsultaById(@PathVariable("id") Integer id){
+	public Consulta getAgendamentoConsultaById(@PathVariable("id") Integer id){
+
 		return this.repoConsulta.findById(id).get();
 	}
 

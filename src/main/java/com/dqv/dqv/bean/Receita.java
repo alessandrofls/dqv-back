@@ -16,7 +16,7 @@ public class Receita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "fk_idConsulta")
 	private Consulta consulta;
 	private Timestamp dataEmissao;
@@ -34,6 +34,10 @@ public class Receita {
 		this.descrição = descrição;
 		this.medicamento = medicamento;
 		this.principioAtivo = principioAtivo;
+	}
+	
+	public Receita() {
+		
 	}
 
 	public Integer getId() {

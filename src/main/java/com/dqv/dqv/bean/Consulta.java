@@ -1,15 +1,12 @@
 package com.dqv.dqv.bean;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,17 +22,16 @@ public class Consulta {
 	private String procedimentoRealizado;
 	
 	@OneToOne
+	@JoinColumn(name = "fk_especialista")
+	private Especialista especialista;
+	
+	@OneToOne
 	@JoinColumn(name = "fk_horario")
 	private Horario horario;
 	
-	@OneToMany(mappedBy = "consulta")
-	private List<Receita> receitas = new ArrayList<Receita>();
-	
-	@OneToOne(mappedBy = "consulta")
-	private AgendamentoConsulta agendamentoConsulta;
 
 	public Consulta( Timestamp horaMarcado, Boolean viaTelefone, Boolean cancelada, Boolean status,
-			String observacao, String avaliacao, String procedimentoRealizado, Horario horario, List<Receita> receitas,
+			String observacao, String avaliacao, String procedimentoRealizado, Horario horario,
 			AgendamentoConsulta agendamentoConsulta) {
 		this.viaTelefone = viaTelefone;
 		this.cancelada = cancelada;
@@ -44,8 +40,12 @@ public class Consulta {
 		this.avaliacao = avaliacao;
 		this.procedimentoRealizado = procedimentoRealizado;
 		this.horario = horario;
-		this.receitas = receitas;
-		this.agendamentoConsulta = agendamentoConsulta;
+	}
+	
+	public Consulta() {
+		this.viaTelefone = false;
+		this.cancelada = false;
+		this.status = false;
 	}
 
 	public Integer getId() {
@@ -113,20 +113,12 @@ public class Consulta {
 		this.horario = horario;
 	}
 
-	public List<Receita> getReceitas() {
-		return receitas;
+	public Especialista getEspecialista() {
+		return especialista;
 	}
 
-	public void setReceitas(List<Receita> receitas) {
-		this.receitas = receitas;
-	}
-
-	public AgendamentoConsulta getAgendamentoConsulta() {
-		return agendamentoConsulta;
-	}
-
-	public void setAgendamentoConsulta(AgendamentoConsulta agendamentoConsulta) {
-		this.agendamentoConsulta = agendamentoConsulta;
+	public void setEspecialista(Especialista especialista) {
+		this.especialista = especialista;
 	}
 	
 	

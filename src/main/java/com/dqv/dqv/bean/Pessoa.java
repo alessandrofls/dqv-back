@@ -1,8 +1,6 @@
 package com.dqv.dqv.bean;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -33,9 +30,6 @@ public class Pessoa {
 	private Timestamp dataIncio;
 	private Timestamp dataFim;
 	private Boolean coordenador;
-	
-	@OneToMany(mappedBy = "paciente")
-	private List<AgendamentoConsulta> agendamentoConsultaPaciente = new ArrayList<AgendamentoConsulta>();
 	
 	
 	@OneToOne
@@ -178,17 +172,6 @@ public class Pessoa {
 		this.coordenador = coordenador;
 	}
 
-
-	public List<AgendamentoConsulta> getAgendamentoConsultaPaciente() {
-		return agendamentoConsultaPaciente;
-	}
-
-
-	public void setAgendamentoConsultaPaciente(List<AgendamentoConsulta> agendamentoConsultaPaciente) {
-		this.agendamentoConsultaPaciente = agendamentoConsultaPaciente;
-	}
-
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -227,15 +210,6 @@ public class Pessoa {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
-//	public void addEspecialista(Especialista especialista) {
-//		this.especialistas.add(especialista);
-//		System.out.println(especialista.getNome());
-//	}
-
-
-	
-	
 	
 	
 }

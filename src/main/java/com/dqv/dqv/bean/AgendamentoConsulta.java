@@ -18,9 +18,11 @@ public class AgendamentoConsulta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Timestamp horaMarcado;
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne
 	@JoinColumn(name = "fk_paciente")
 	private Pessoa paciente;
+	
 	@ManyToOne
 	@JoinColumn(name = "fk_servidor")
 	private Servidor servidor;
