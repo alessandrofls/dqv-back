@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dqv.dqv.bean.Especialista;
+import com.dqv.dqv.bean.Especialistas;
 import com.dqv.dqv.bean.Medico;
 import com.dqv.dqv.bean.Pessoa;
+import com.dqv.dqv.bean.TipoMedico;
 import com.dqv.dqv.repository.RepoMedico;
 import com.dqv.dqv.repository.RepoPessoa;
 
@@ -31,6 +33,7 @@ public class ControlMedico {
 		Pessoa coordenador = this.repoPessoa.findById(idcoord).get();
 		if(coordenador.getCoordenador()) {
 			medico.setResponsavel(coordenador);
+			medico.setEspecialidade(Especialistas.MEDICO);
 			this.repoMedico.save(medico);
 		}
 		return medico;

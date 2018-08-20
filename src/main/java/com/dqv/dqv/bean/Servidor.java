@@ -15,10 +15,7 @@ public class Servidor extends Funcionario {
 	
 
 	private Situacao situacao;
-	
-	@OneToMany(mappedBy = "servidor")
-	private List<AgendamentoConsulta> agendamentoConsultaServidor = new ArrayList<AgendamentoConsulta>();
-	
+		
 	
 	public Servidor(String nome, String rg, String cpf, String telefone, Sexo sexo, EstadoCivil estadoCivil,
 			Timestamp dataNascimento, Endereco endereco, int numeroDependentes, Timestamp dataAdmissao) {
@@ -43,14 +40,6 @@ public class Servidor extends Funcionario {
 		this.situacao = situacao;
 	}
 	
-	public List<AgendamentoConsulta> getAgendamentoConsultaServidor() {
-		return agendamentoConsultaServidor;
-	}
-
-
-	public void setAgendamentoConsulta(List<AgendamentoConsulta> agendamentoConsultaServidor) {
-		this.agendamentoConsultaServidor = agendamentoConsultaServidor;
-	}
 
 
 	

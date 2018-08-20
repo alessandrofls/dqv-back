@@ -28,6 +28,16 @@ public class ControlPessoa {
 		return this.repoPessoa.save(pessoa);
 	}
 	
+	@PostMapping(path = "/login")
+	public Pessoa login(@RequestBody Pessoa pessoa) {
+		if(this.repoPessoa.existsByEmail(pessoa.getEmail())&&(this.repoPessoa.findByEmail(pessoa.getEmail()).getPass().equals(pessoa.getPass()))){
+			return this.repoPessoa.findByEmail(pessoa.getEmail());
+		}
+		else{
+			return new Pessoa();
+		}
+	}
+	
 	@GetMapping
 	public List<Pessoa> getAll(){
 		return this.repoPessoa.findAll();
