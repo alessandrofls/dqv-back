@@ -53,6 +53,18 @@ public class ControlCoordenador {
 		return this.repoPessoa.findById(id).get();
 	}
 	
+	@GetMapping(path = "/ativos")
+	public List<Pessoa> getCoordenadoresAtivos(){
+		List<Pessoa> pessoas = this.repoPessoa.findAll();
+		List<Pessoa> coordenadores = new ArrayList<Pessoa>();
+		for(int i=0;i<pessoas.size();i++){
+			if(pessoas.get(i).getCoordenador()&&(pessoas.get(i).getDataFim()==null)) {
+				coordenadores.add(pessoas.get(i));
+			}
+		}
+		return coordenadores;
+	}
+	
 	@GetMapping(path = "/especialistas/{id}")
 	public List<Especialista> getEspecialistasById(@PathVariable("id") Integer id){
 		List<Especialista> especialistas = this.repoEspecialista.findAll();
