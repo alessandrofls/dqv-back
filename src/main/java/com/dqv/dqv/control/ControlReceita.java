@@ -58,7 +58,7 @@ public class ControlReceita {
 		
 		for(int i=0;i<receitas.size();i++) {
 			for(int j=0;j<consultasPessoa.size();j++) {
-				if(consultasPessoa.get(i).getConsulta().getId()==receitas.get(j).getConsulta().getId()) {
+				if(consultasPessoa.get(j).getConsulta().getId()==receitas.get(i).getConsulta().getId()) {
 					receitasPessoa.add(receitas.get(j));
 				}
 			}
@@ -82,7 +82,7 @@ public class ControlReceita {
 		
 		for(int i=0;i<receitas.size();i++) {
 			for(int j=0;j<consultasEspecialista.size();j++) {
-				if(consultasEspecialista.get(i).getId()==receitas.get(j).getConsulta().getId()) {
+				if(consultasEspecialista.get(j).getId()==receitas.get(i).getConsulta().getId()) {
 					receitasEspecialista.add(receitas.get(j));
 				}
 			}
