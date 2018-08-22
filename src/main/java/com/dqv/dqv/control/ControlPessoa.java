@@ -60,5 +60,10 @@ public class ControlPessoa {
 	public Pessoa getPessoaById(@PathVariable("id") Integer id){
 		return this.repoPessoa.findById(id).get();
 	}
+	
+	@GetMapping(path = "/cpf/{cpf}")
+	public Pessoa getPessoaByCpf(@PathVariable("cpf") String cpf){
+		return this.repoPessoa.findByCpf(cpf);
+	}
 
 }

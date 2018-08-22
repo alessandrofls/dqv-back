@@ -1,5 +1,6 @@
 package com.dqv.dqv.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,18 @@ public class ControlMedico {
 	@GetMapping(path = "/{id}")
 	public Medico getMedicoById(@PathVariable("id") Integer id){
 		return this.repoMedico.findById(id).get();
+	}
+	
+	@PostMapping(path = "/especialidade")
+	public List<Medico> getMedicoTipo(@RequestBody Medico medico) {
+		List<Medico> medicos = this.repoMedico.findAll();
+		List<Medico> medicoTipo = new ArrayList<Medico>();
+		
+		for(int i=0;i<medicos.size();i++) {
+			if(medicos.get(i).getTipo().equals(medico.getTipo())) {
+				medicoTipo.add(medicos.get(i));
+			}
+		}
+		return medicoTipo;
 	}
 }

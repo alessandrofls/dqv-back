@@ -1,5 +1,6 @@
 package com.dqv.dqv.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,18 @@ public class ControlEspecialista {
 			this.repoEspecialista.save(especialista);
 		}
 		return especialista;
+	}
+	
+	@PostMapping(path = "/especialidade")
+	public List<Especialista> getEspecialistaTipo(@RequestBody Especialista especialista) {
+		List<Especialista> especialistas = this.repoEspecialista.findAll();
+		List<Especialista> especialistasTipo = new ArrayList<Especialista>();
+		
+		for(int i=0;i<especialistas.size();i++) {
+			if(especialistas.get(i).getEspecialidade().equals(especialista.getEspecialidade())) {
+				especialistasTipo.add(especialistas.get(i));
+			}
+		}
+		return especialistasTipo;
 	}
 }
