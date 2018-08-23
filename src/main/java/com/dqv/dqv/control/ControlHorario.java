@@ -56,11 +56,12 @@ public class ControlHorario {
 	@GetMapping(path = "/diariaespecialista/{idDiaria}")
 	public List<Horario> getHoraDiariaByEspe(@PathVariable("idDiaria") Integer idDiaria){
 		Diaria diaria = this.repoDiaria.findById(idDiaria).get();
+		System.out.println(diaria.getDiaria());
 		List <Horario> horarios = this.repoHorario.findAll();
 		List <Horario> horariosEsp = new ArrayList<Horario>();
 		
 		for(int i=0;i<horarios.size();i++) {
-			if(horarios.get(i).getDiaria().getId()==diaria.getId()) {
+			if((horarios.get(i).getDiaria().getId()==diaria.getId())&&(horarios.get(i).isDisponivel())) {
 				horariosEsp.add(horarios.get(i));
 			}
 		}

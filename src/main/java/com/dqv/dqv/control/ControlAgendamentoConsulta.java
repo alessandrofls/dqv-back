@@ -69,6 +69,7 @@ public class ControlAgendamentoConsulta {
 		Horario horario = repoHorario.findById(idHora).get();
 		Consulta consulta = new Consulta();
 		Consulta consultaSalva;
+		horario.setDisponivel(false);
 		consulta.setHorario(horario);
 		consulta.setEspecialista(horario.getDiaria().getEspecialista());
 		if(agendamento.getServidor()!=null) {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dqv.dqv.bean.Especialista;
 import com.dqv.dqv.bean.Pessoa;
 import com.dqv.dqv.bean.Servidor;
+import com.dqv.dqv.bean.Situacao;
 import com.dqv.dqv.repository.RepoPessoa;
 import com.dqv.dqv.repository.RepoServidor;
 
@@ -28,6 +29,7 @@ public class ControlServidor {
 	
 	@PostMapping
 		public Servidor save(@RequestBody Servidor servidor) {
+		servidor.setSituacao(Situacao.ATIVO);
 		return this.repoServidor.save(servidor);
 	}
 	

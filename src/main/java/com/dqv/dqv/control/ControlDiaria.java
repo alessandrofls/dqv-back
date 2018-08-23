@@ -1,5 +1,6 @@
 package com.dqv.dqv.control;
 
+import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public class ControlDiaria {
 		LocalTime pmAtual = LocalTime.of(14, 0);
 		
 		Especialista especialista = this.repoEspecialista.findById(idesp).get();
+		diaria.setAprovado(false);;
+		diaria.setValidado(false);
 		diaria.setEspecialista(especialista);
 		Diaria diariaSalva=this.repoDiaria.save(diaria);
 		Horario h = new Horario();
@@ -92,8 +95,10 @@ public class ControlDiaria {
 	public List<Diaria> getDiariaByEspe(@PathVariable("idesp") Integer idesp){
 		List <Diaria> diarias = this.repoDiaria.findAll();
 		List <Diaria> diariasEsp = new ArrayList<Diaria>();
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		for(int i=0;i<diarias.size();i++) {
-			if(diarias.get(i).getEspecialista().getId()==idesp) {
+			if(diarias.get(i).getEspecialista().getId()==idesp&&
+			diarias.get(i).getDiaria().toLocalDateTime().getMonth()==now.toLocalDateTime().getMonth()) {
 				diariasEsp.add(diarias.get(i));
 			}
 		}
