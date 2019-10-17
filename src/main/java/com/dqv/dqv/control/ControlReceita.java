@@ -90,10 +90,24 @@ public class ControlReceita {
 		return receitasEspecialista;
 	}
 	
+	@GetMapping(path = "/consulta/{id}")
+	public List<Receita> listarReceitaConsulta(@PathVariable("id") Integer id){
+		Consulta c =  repoConsulta.findById(id).get();
+		List<Receita> receitas = this.repoReceita.findAll();
+		List<Receita> receitasConsulta = new ArrayList<Receita>();
+		for(int i=0;i<receitas.size();i++) {
+			if(receitas.get(i).getConsulta().getId()==c.getId()) {
+				receitasConsulta.add(receitas.get(i));
+			}
+		}
+		
+		return receitasConsulta;
+	}
+	
 	@GetMapping(path = "/{id}")
-	public Consulta getAgendamentoConsultaById(@PathVariable("id") Integer id){
+	public Receita getAgendamentoReceitaById(@PathVariable("id") Integer id){
 
-		return this.repoConsulta.findById(id).get();
+		return this.repoReceita.findById(id).get();
 	}
 	
 	
