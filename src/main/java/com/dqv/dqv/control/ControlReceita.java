@@ -59,7 +59,7 @@ public class ControlReceita {
 		for(int i=0;i<receitas.size();i++) {
 			for(int j=0;j<consultasPessoa.size();j++) {
 				if(consultasPessoa.get(j).getConsulta().getId()==receitas.get(i).getConsulta().getId()) {
-					receitasPessoa.add(receitas.get(j));
+					receitasPessoa.add(receitas.get(i));
 				}
 			}
 		}
